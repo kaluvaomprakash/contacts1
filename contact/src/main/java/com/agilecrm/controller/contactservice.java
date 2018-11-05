@@ -1,11 +1,12 @@
-package com.agilecrm.dao;
+package com.agilecrm.controller;
 
 import java.util.ArrayList;
 
 import com.agilecrm.dto.contact_dto;
 
-public interface contactsDAO {
+public interface contactservice {
 
+	
 	public int addContact(contact_dto contact);
 	public int updateContact(contact_dto contact);
 	public int delectContact(String id);
@@ -13,5 +14,5 @@ public interface contactsDAO {
 	 public ArrayList<contact_dto> getAllEmployees();
 	
 	
+	
 }
-
