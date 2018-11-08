@@ -10,8 +10,6 @@
 <tr><td>Email:</td><td><input type="text" name="email"/></td></tr>  
 <tr><td>address</tr></td><input type="text" name ="address"/></td></tr> 
 <tr><td colspan="2"><input type="submit" value="Save Employee"/></td></tr>  
-<tr><td>enter id</td><td><input type="text" name="id"/></td></tr>  
-<button type="button">serch contact</button>
 </table>  
 </form>  
 </body>

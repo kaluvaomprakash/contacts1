@@ -9,4 +9,7 @@ public class jdbcConnections {
 	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/training","root","root123");
 	return con;
 }
+	public static void main(String args[]) throws ClassNotFoundException, SQLException {
+		System.out.println(jdbcConnections.getConnection().getClass().getName()+"----");
+	}
 }
