@@ -1,0 +1,148 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL; 
+
+public class NewServlet extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        response.setContentType("application/json;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            //String st = request.getParameter("firstName");
+            //String st1 = request.getParameter("lastName");
+             
+            //	String splitofst[]=st.split(",");
+		//String splitofst1[]=st1.split(",");
+		//String newObj="{";
+		//for(int i=0;i<splitofst.length;i++){
+		    //String s=
+	//	newObj+='"'+splitofst[i]+'"'+':'+'"'+splitofst1[i]+'"'+',';
+		
+	//	}
+	//	newObj=newObj.substring(0,newObj.length()-1);
+	//	newObj+="}";
+	//	  out.println(newObj);
+            
+        
+        //===========================================================================================
+            String url1 = request.getParameter("firstName");
+            String method = request.getParameter("lastName");
+            String token = request.getParameter("token");
+            String url = url1;
+     URL obj = new URL(url);
+     HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+     // optional default is GET
+     con.setRequestMethod(method);
+     //add request header
+     con.setRequestProperty("User-Agent", "Mozilla/5.0");
+     String userCredentials = "username:password";
+    String basicAuth = "Bearer "+token ;
+
+     con.setRequestProperty ("Authorization", basicAuth);
+     int responseCode = con.getResponseCode();
+     System.out.println("\nSending 'GET' request to URL : " + url);
+     System.out.println("Response Code : " + responseCode);
+     BufferedReader in = new BufferedReader(
+             new InputStreamReader(con.getInputStream()));
+     String inputLine;
+     StringBuffer response1 = new StringBuffer();
+     while ((inputLine = in.readLine()) != null) {
+     	response1.append(inputLine);
+     }
+     in.close();
+     //print in String
+     //a
+     
+      out.println("type of "+response1.getClass().getName());
+     out.println("working "+response1);
+         
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet NewServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
+
+
+
+ <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Only Oauth 2</h1>
+        <form action="NewServlet">
+        <input type="text" name="firstName" placeholder="Enter url"><br>
+        <input type="text" name="lastName" placeholder="Please specify Method"><br>
+        <input type="text" name="token" placeholder="Enter ur token"><br>
+        <input type="submit" >
+        </form>
+        
+    </body>
+</html>
